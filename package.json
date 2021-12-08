@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/fddiashok/tinyapp/issues"
   },
-  "homepage": "https://github.com/fddiashok/tinyapp#readme"
+  "homepage": "https://github.com/fddiashok/tinyapp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
