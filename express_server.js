@@ -54,7 +54,8 @@ function filterByAttribute(UsersObj, attrib, value) {//
       fileredObjArray.push(UsersObj[obj]);
     }
   }
-  return fileredObjArray.filter((individualUser) => { return individualUser[attrib] == value });
+  const result= fileredObjArray.filter((individualUser) => { return individualUser[attrib] == value });
+  return result;
 }
 
 
@@ -65,9 +66,9 @@ function filterByAttribute(UsersObj, attrib, value) {//
 
 
 //Login existing users
-app.get('/login',(req,res) => {
+app.get('/login', (req, res) => {
 
-res.render("login");
+  res.render("login");
 });
 
 
@@ -105,7 +106,7 @@ app.get('/urls/:shortURL', (req, res) => {
   const shortURL = req.params.shortURL;
   const longURL = urlDatabase[shortURL];
   const templateVars = {
-    username: req.cookies["username"],
+    id: req.cookies["user_id"],
     shortURL,
     longURL
   };
@@ -158,10 +159,36 @@ app.post("/login", (req, res) => {
   const password = req.body.password;
 
   //validate email and passwords aren't empty
+  if (!email || !password) {
+    return res.status(403).send("email and password can't be blank");
+  }
 
+  // Check if user exists or not
+  let matchingUser = filterByAttribute(users, "email", email);
   
-  // res.redirect('/urls');
+
+  if (!matchingUser.length) {
+    return res.status(403).send({ error: "Email doesn't exists, please register" });
+  }
+  else {
+    // check for password match
+    let matchingUser = filterByAttribute(users, "password", password);
+    
+    if (!matchingUser.length) {
+      return res.status(403).send({ error: "Password is incorrect, please try again" });
+    }
+    else {
+      const user_id = matchingUser[0]["id"]
+      res.cookie("user_id",user_id);
+      res.redirect('/urls');
+    }
+  }
 });
+
+
+
+
+
 
 
 
