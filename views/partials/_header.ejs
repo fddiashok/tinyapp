@@ -1,7 +1,8 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-success">
     <a class="navbar-brand" href="/urls">TinyApp</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -10,5 +11,26 @@
         <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
       </div>
     </div>
+    <!-- // check if username exists or not -->
+
+    <!-- if username exists then display username and log out button -->
+    <% if(user_id && user_id["email"]){ %>
+      <div style="right: 200x; top:8px;">
+        <label style="left: 100px;">Logged In As :  <%= user_id["email"] %></label>
+        <form class="form-inline" action="/logout" method="POST">
+          <button type="submit" class="btn btn-primary">Log Out</button>
+        </form>
+      </div>
+      <% } else{ %>
+        <!-- else only display login button -->
+        <div>
+          <form class="form-inline" action="/login" method="POST">
+            <label for="username"></label>
+            <input class="form-control" type="text" name="username" placeholder="Username"
+              style="width: 300px; margin: 1em;">
+            <button type="submit" class="btn btn-primary">Log in</button>
+          </form>
+        </div>
+        <% } %>
   </nav>
 </header>
