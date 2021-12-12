@@ -1,0 +1,29 @@
+<%- include ("partials/header") %>
+<section>
+  <article class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3>Welcome to Tiny App!</h3>
+        <p>If you have an account please login</p>
+        <form action="/login" method="POST">
+          <div class="row">
+            <div class="col-3">
+              <label> Email:
+              <input class="form-control" type="email" name="email" placeholder="yourname@email.com">
+              </label>
+            </div>
+            <div class="col-3">
+              <label> Password:
+              <input class="form-control" type="password" name="password" placeholder="password">
+              </label>
+            </div>
+            <div class="col-12">
+              <input type="submit" value="Login" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <p style="transform: matrix();">If not an existing user please register,<a href="/register">here</a></p>
+    </div>
+  </article>
+</section>

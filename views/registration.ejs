@@ -1,0 +1,28 @@
+<%- include ("partials/header") %>
+  <section>
+    <article class="container">
+      <div class="row">
+        <div class="col-12">
+          <h3>Register</h3>
+          </ul>
+          <form method="POST" action="/register">
+            <div class="row">
+                <div class="col-3">
+                <label>Email:
+                <input class="form-control" type="email" name="email" placeholder="yourname@email.com">
+                </label>
+              </div>
+              <div class="col-3">
+                <label>Password
+                <input class="form-control" type="password" name="password" >
+                </label>
+              </div>
+              <div class="col-12">
+                <input type="submit" value="Register" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </article>
+  </section>
